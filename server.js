@@ -12,7 +12,7 @@ var HTTP_PORT = process.env.PORT || 8080;
 var express = require("express");
 var app = express();
 var path = require("path");
-var collegeData = require("./collegeData"); // assuming collegeData module is in the same directory
+var collegeData = require("./modules/collegeData.js");
 
 // Initialize college data
 collegeData.initialize()
