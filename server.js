@@ -1,18 +1,26 @@
 /*********************************************************************************
-*  WEB700 – Assignment 03
+*  WEB700 – Assignment 04
 *  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.  No part 
 *  of this assignment has been copied manually or electronically from any other source 
 *  (including 3rd party web sites) or distributed to other students.
 * 
 *  Name: Rosco Taner____________ Student ID: 126154236___ Date:2/16/2024 _______________
+*  Online (Cycliic) Link: ________________________________________________________
 *
-********************************************************************************/
+********************************************************************************/ 
 
-var HTTP_PORT = process.env.PORT || 8080;
+
+// Required modules
 var express = require("express");
 var app = express();
 var path = require("path");
 var collegeData = require("./modules/collegeData.js");
+
+// Define the path to the public folder
+var publicPath = path.join(__dirname, "public");
+
+// Serve static files from the public directory
+app.use(express.static(publicPath));
 
 // Initialize college data
 collegeData.initialize()
@@ -120,9 +128,10 @@ collegeData.initialize()
             res.status(404).send("Page Not Found");
         });
 
-        // start the server
+        // Start the server
+        var HTTP_PORT = process.env.PORT || 8080;
         app.listen(HTTP_PORT, () => {
-            console.log("server listening on port: " + HTTP_PORT)
+            console.log("Server listening on port: " + HTTP_PORT);
         });
     })
     .catch(err => {
